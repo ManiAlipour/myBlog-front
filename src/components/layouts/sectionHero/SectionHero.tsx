@@ -11,11 +11,11 @@ const SectionHero = () => {
   return (
     <div
       id="#"
-      className="flex justify-around items-center  gap-10 w-full min-h-screen flex-col lg:flex-row"
+      className="flex mb-22 justify-around items-center gap-10 w-full lg:max-h-screen flex-col lg:flex-row"
     >
       <h1 className="text-6xl lg:hidden inline-block text-brand2">Developer</h1>
 
-      <div className="flex flex-3/8 items-center  justify-center h-full">
+      <div className="flex flex-3/8 lg:px-10 items-center justify-center h-full">
         <div
           className="w-[320px] font-IBM h-[520px] border-l-4 border-t-4 border-r-2 p-[24px] border-b-2 rounded-tl-[200px]
          rounded-br-[200px] [box-shadow:-28px_-8px_36px_-16px_rgba(0,255,255,0.16)] bg-bg1  border-white
@@ -70,7 +70,7 @@ const SectionHero = () => {
         </div>
       </div>
 
-      <div className="flex self-stretch px-5 lg:p-2 flex-5/8">
+      <div className="flex self-stretch [@media(max-width:768px)]:flex-col md:px-10 px-5 lg:p-2 flex-5/8">
         <div className="flex-3/8 flex flex-col justify-around py-5">
           <h1 className="lg:text-6xl xl:text-7xl hidden lg:inline-block text-brand2">
             Developer

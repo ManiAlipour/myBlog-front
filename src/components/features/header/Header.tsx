@@ -5,7 +5,7 @@ import { FaGithubAlt, FaInstagram, FaTelegramPlane } from "react-icons/fa";
 
 function Header() {
   return (
-    <div className="flex z-50 justify-between items-center max-w-full w-full px-5 py-10">
+    <div className="flex justify-between items-center max-w-full w-full px-5 py-10">
       <div className="@max-xs:text-sm sm:text-base lg:text-xl flex-1/4">
         <span className="text-brand1">{"<M />"}</span> Mani Alipour
       </div>

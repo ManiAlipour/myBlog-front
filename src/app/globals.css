@@ -39,6 +39,10 @@
   --font-IBM: var(--IBM);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--bg1);
   color: var(--white);
