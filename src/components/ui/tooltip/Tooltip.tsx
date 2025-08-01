@@ -7,7 +7,7 @@ interface TooltipProps {
 }
 
 const Tooltip = ({ text, children, position = "top" }: TooltipProps) => {
-  let tooltipPosition =
+  const tooltipPosition =
     position === "top"
       ? "left-1/2 -translate-x-1/2 -top-12"
       : position === "bottom"
@@ -16,7 +16,7 @@ const Tooltip = ({ text, children, position = "top" }: TooltipProps) => {
       ? "right-full top-1/2 -translate-y-1/2 mr-2"
       : "left-full top-1/2 -translate-y-1/2 ml-2";
 
-  let arrowPosition =
+  const arrowPosition =
     position === "top"
       ? "bottom-[-7px] left-1/2 -translate-x-1/2 rotate-180"
       : position === "bottom"

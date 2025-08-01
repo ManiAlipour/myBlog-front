@@ -26,8 +26,8 @@ const About = () => {
             <span className="text-brand1">NEXT</span> etc. <br />
             <br /> I am a highly motivated individual and eternal optimist
             dedicated to writing clear, concise, robust code that works.
-            Striving to never stop learning and improving.When I'm not coding,
-            I'm <span className="text-brand1">writing blogs</span>,{" "}
+            Striving to never stop learning and improving.When I&apos;m not coding,
+            I&apos;m <span className="text-brand1">writing blogs</span>,{" "}
             <span className="text-brand1">reading</span>, or{" "}
             <span className="text-brand1">playing games</span>. <br />
             <br /> I like to have my perspective and belief systems challenged

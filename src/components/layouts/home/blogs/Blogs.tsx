@@ -3,25 +3,8 @@ import Title from "@ui/layoutTitle/Title";
 import Image from "next/image";
 import Link from "next/link";
 
-const fetchPosts = async () => {
-  try {
-    const res = await fetch(
-      `${process.env.BACKEND_BASE_URL}/posts?limit=1&page=1`
-    );
-
-    const data = await res.json();
-
-    return data;
-  } catch (error) {
-    console.log(error);
-    return { data: [] };
-  }
-};
 
 const Blogs = async () => {
-  let data = await fetchPosts();
-  let post: object[] = data.data;
-
   return (
     <div id="blogs" className="min-h-screen bg-bg2 w-full flex flex-col py-20">
       <Title

@@ -1,8 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
-import { CiSearch } from "react-icons/ci";
-import { IoIosCloseCircleOutline } from "react-icons/io";
 import { MdClose } from "react-icons/md";
 
 function SearchBox() {
