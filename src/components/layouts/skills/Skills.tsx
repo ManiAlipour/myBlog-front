@@ -7,6 +7,54 @@ import { IoLogoJavascript } from "react-icons/io";
 import { RiComputerLine, RiNextjsLine, RiNodejsLine } from "react-icons/ri";
 import { TbDeviceMobile } from "react-icons/tb";
 
+interface ILangProps {
+  Icon: IconType;
+  title: string;
+  color: "html" | "css" | "js" | "react" | "node" | "next";
+  iconColor?: string;
+  id: number;
+}
+
+const langs: ILangProps[] = [
+  {
+    Icon: AiOutlineHtml5,
+    color: "html",
+    title: "HTML",
+    id: 1,
+  },
+  {
+    Icon: FaCss3,
+    color: "css",
+    title: "CSS",
+    id: 2,
+  },
+  {
+    Icon: IoLogoJavascript,
+    color: "js",
+    title: "JS",
+    id: 3,
+  },
+  {
+    Icon: GrReactjs,
+    color: "react",
+    title: "REACT",
+    id: 4,
+  },
+  {
+    Icon: RiNextjsLine,
+    color: "next",
+    title: "NEXT",
+    iconColor: "black",
+    id: 5,
+  },
+  {
+    Icon: RiNodejsLine,
+    color: "node",
+    title: "NODE",
+    id: 6,
+  },
+];
+
 const Skills = () => {
   return (
     <div className="min-h-screen flex flex-col py-20">
@@ -17,7 +65,7 @@ const Skills = () => {
       </span>
 
       <div className="mx-auto flex flex-col">
-        <span className="xl:text-6xl lg:text-5xl text-brand1 self-center">
+        <span className="text-6xl lg:text-5xl text-brand1 self-center">
           Skills
         </span>
 
@@ -25,17 +73,18 @@ const Skills = () => {
           <TitleBorderBottom />
         </span>
 
-        <p className="font-IBM font-extralight">
+        <p className="font-IBM text-center font-extralight">
           I am striving to never stop learning and improving
         </p>
       </div>
 
-      <div className="flex justify-center items-center gap-20">
+      <div className="flex flex-col md:flex-row justify-center items-center gap-x-20">
         <SkillCard
           Icon={RiComputerLine}
           desc="HTML·CSS·JS·REACT..."
           title="web developement"
         />
+
         <SkillCard
           Icon={TbDeviceMobile}
           desc="REACT-NATIVE"
@@ -43,17 +92,9 @@ const Skills = () => {
         />
       </div>
       <div className="flex flex-wrap justify-center gap-20">
-        <LanguegeCard Icon={AiOutlineHtml5} color="html" title="HTML" />
-        <LanguegeCard Icon={FaCss3} color="css" title="CSS" />
-        <LanguegeCard Icon={IoLogoJavascript} color="js" title="JS" />
-        <LanguegeCard Icon={GrReactjs} color="react" title="REACT" />
-        <LanguegeCard
-          Icon={RiNextjsLine}
-          color="next"
-          title="NEXT"
-          iconColor="black"
-        />
-        <LanguegeCard Icon={RiNodejsLine} color="node" title="NODE" />
+        {langs.map((l) => (
+          <LanguegeCard key={l.id} {...l} />
+        ))}
       </div>
     </div>
   );
@@ -103,12 +144,7 @@ const LanguegeCard = ({
   title,
   color,
   iconColor = "white",
-}: {
-  Icon: IconType;
-  title: string;
-  color: "html" | "css" | "js" | "react" | "node" | "next";
-  iconColor?: string;
-}) => {
+}: ILangProps) => {
   return (
     <div className="flex flex-col items-center gap-2">
       <div
