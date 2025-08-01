@@ -1,7 +1,6 @@
 import Button from "@/components/ui/button/Button";
 import Image from "next/image";
 import Link from "next/link";
-import { FaLink } from "react-icons/fa";
 import { FiMapPin } from "react-icons/fi";
 import { GoClock } from "react-icons/go";
 import { IoIosLink } from "react-icons/io";
@@ -27,6 +26,7 @@ const SectionHero = () => {
               alt="profile"
               width={86}
               height={86}
+              priority
             />
             <span className="text-xl font-bold">Mani</span>
             <span className="text-base font-extralight">

@@ -1,3 +1,4 @@
+import Title from "@/components/ui/layoutTitle/Title";
 import TitleBorderBottom from "@/components/ui/layoutTitle/TitleWithBBorder";
 import { IconType } from "react-icons";
 import { AiOutlineHtml5 } from "react-icons/ai";
@@ -57,26 +58,17 @@ const langs: ILangProps[] = [
 
 const Skills = () => {
   return (
-    <div className="min-h-screen flex flex-col py-20">
-      <span id="skills" className="text-9xl text-brand1 lg:flex hidden">
+    <div id="skills" className="min-h-screen flex flex-col py-20">
+      <span className="text-9xl text-brand1 lg:flex hidden">
         <span className="flex-1/3"></span>
         <span className="flex-1/3"></span>
         <span className="flex-1/3">{"</>"}</span>
       </span>
 
-      <div className="mx-auto flex flex-col">
-        <span className="text-6xl lg:text-5xl text-brand1 self-center">
-          Skills
-        </span>
-
-        <span className="w-1/3 mx-auto">
-          <TitleBorderBottom />
-        </span>
-
-        <p className="font-IBM text-center font-extralight">
-          I am striving to never stop learning and improving
-        </p>
-      </div>
+      <Title
+        title="Skills"
+        description="I am striving to never stop learning and improving"
+      />
 
       <div className="flex flex-col md:flex-row justify-center items-center gap-x-20">
         <SkillCard
