@@ -23,7 +23,7 @@
       "@layouts/*": ["./src/components/layouts/*"],
       "@ui/*": ["./src/components/ui/*"],
       "@features/*": ["./src/components/features/*"],
-      "@providers/*": ["./src/components/providers/*"],
+      "@providers/*": ["./src/components/providers/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

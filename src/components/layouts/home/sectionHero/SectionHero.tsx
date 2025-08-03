@@ -1,4 +1,5 @@
 import Button from "@/components/ui/button/Button";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import Link from "next/link";
 import { FiMapPin } from "react-icons/fi";
@@ -6,7 +7,9 @@ import { GoClock } from "react-icons/go";
 import { IoIosLink } from "react-icons/io";
 import { MdOutlineFileDownload, MdOutlineMailOutline } from "react-icons/md";
 
-const SectionHero = () => {
+const SectionHero = async () => {
+  const t = await getTranslations("homePage");
+
   return (
     <div
       id="#"
@@ -73,7 +76,7 @@ const SectionHero = () => {
       <div className="flex self-stretch [@media(max-width:768px)]:flex-col md:px-10 px-5 lg:p-2 flex-5/8">
         <div className="flex-3/8 flex flex-col justify-around py-5">
           <h1 className="lg:text-6xl xl:text-7xl hidden lg:inline-block text-brand2">
-            Developer
+            {t("sectionHeroTitle")}
           </h1>
           <div className="flex flex-col gap-3 text-4xl xl:text5xl">
             <span className="text-base text-brand2 -ml-5 opacity-70">
@@ -95,8 +98,8 @@ const SectionHero = () => {
             <span className="text-base text-gray-400 -ml-5 opacity-70">
               {"<p>"}
             </span>
-            <br />I help business grow by crafting amazing web experiences. If
-            you’re looking for a developer that likes to get stuff done,
+            <br />
+            {t("sectionHeroDescription")}
             <br />
             <span className="text-base text-gray-400 -ml-5 opacity-70">
               {"</p>"}

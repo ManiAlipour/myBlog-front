@@ -69,3 +69,7 @@ body {
 .bg-light {
   background-color: var(--white);
 }
+
+.font-vazir {
+  font-family: "Vazirmatn";
+}
