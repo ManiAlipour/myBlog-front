@@ -37,5 +37,17 @@
     "readMore": "Read More",
     "text": "Text",
     "date": "Date"
+  },
+  "ContactUs": {
+    "title": "Contact",
+    "description": "I’m currently available for freelance work",
+    "sendMessageTitle": "Send Me A Message",
+    "emailLable": "Your Email",
+    "emailPlaceholder": "Enter your email",
+    "nameLable": "Your name",
+    "namePlaceholder": "Enter your name",
+    "messageLable": "Your message",
+    "massagePlaceholder": "Enter your message",
+    "sendBtn": "Send Message"
   }
 }

@@ -2,6 +2,7 @@
 import Button from "@/components/ui/button/Button";
 import Input from "@/components/ui/input/Input";
 import { useFormik } from "formik";
+import { useTranslations } from "next-intl";
 import { TbSend } from "react-icons/tb";
 import * as Yup from "yup";
 
@@ -21,6 +22,8 @@ const Form = () => {
       console.log(values);
     },
   });
+
+  const t = useTranslations("ContactUs");
   return (
     <form
       className="flex flex-wrap justify-around w-2/3 mx-auto items-center gap-20 px-20"
@@ -30,9 +33,9 @@ const Form = () => {
         <Input
           required
           {...formik.getFieldProps("name")}
-          label="Your name"
+          label={t("nameLable")}
           name="name"
-          placeholder="Enter your name"
+          placeholder={t("namePlaceholder")}
         />
       </div>
 
@@ -40,9 +43,9 @@ const Form = () => {
         <Input
           required
           {...formik.getFieldProps("email")}
-          label="Your email"
+          label={t("emailLable")}
           name="email"
-          placeholder="Enter your email"
+          placeholder={t("emailPlaceholder")}
         />
       </div>
 
@@ -50,14 +53,14 @@ const Form = () => {
         <Input
           required
           {...formik.getFieldProps("message")}
-          label="Your message"
+          label={t("messageLable")}
           type="textarea"
-          placeholder="Enter your needs"
+          placeholder={t("massagePlaceholder")}
           name="message"
         />
       </div>
-      <Button type="submit">
-        <span className="font-bold">Send Message</span>{" "}
+      <Button type="submit" className="bg-brand2">
+        <span className="font-bold">{t("sendBtn")}</span>{" "}
         <TbSend className="text-2xl" />
       </Button>
     </form>

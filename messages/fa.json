@@ -37,5 +37,17 @@
     "readMore": "مشاهده بیشتر",
     "text": "نویسنده",
     "date": "تاریخ"
+  },
+  "ContactUs": {
+    "title": "ارتباط با من",
+    "description": "در حال حاضر برای انجام پروژه‌های فریلنسری در دسترس هستم.",
+    "sendMessageTitle": "پیام بفرستید",
+    "emailLable": "ایمیل شما",
+    "emailPlaceholder": "ایمیل خود را وارد کنید",
+    "nameLable": "نام شما",
+    "namePlaceholder": "نام حود را وارد کنید",
+    "messageLable": "پیام شما",
+    "massagePlaceholder": "پیام خود را وارد کنید",
+    "sendBtn": "ارسال پیام"
   }
 }

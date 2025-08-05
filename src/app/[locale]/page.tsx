@@ -3,6 +3,7 @@ import Sidebar from "@features/sidebar/Sidebar";
 import About from "@layouts/home/about/About";
 import SectionHero from "@layouts/home/sectionHero/SectionHero";
 import Skills from "@layouts/home/skills/Skills";
+import ContactUs from "@/components/layouts/home/contcat/ContactUs";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <About />
       <Skills />
       <Blogs />
+      <ContactUs />
     </div>
   );
 }
