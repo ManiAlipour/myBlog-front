@@ -1,37 +1,50 @@
+import { getTranslations } from "next-intl/server";
+import { cookies } from "next/headers";
 import Image from "next/image";
 
-const About = () => {
+const About = async () => {
+  const t = await getTranslations("AboutMe");
+  const cookie = await cookies();
+  const locale = cookie.get("USER_LOCALE");
+
+  const en = locale?.value === "en";
+
   return (
     <div
       id="about"
       className="flex md:px-10 gap-y-5 px-0 justify-center flex-col xl:flex-row items-center my-20 bg-bg2 min-h-screen py-20"
     >
       <div className="flex-1/2 px-10  gap-y-10 flex w-full flex-col items-start justify-around self-stretch">
-        <h2 className="text-3xl px-6 py-3 border-2 border-brand1 rounded-tl-4xl rounded-br-4xl  ">
-          About Me
+        <h2
+          className={`text-3xl px-6 py-3 border-2 border-brand1 rounded-tl-4xl rounded-br-4xl ${
+            en ? "font-ubuntu" : "font-morabba"
+          } `}
+        >
+          {t("aboutMe")}
         </h2>
 
         <section className=" bg-bg1 py-5 px-2 md:p-10 rounded-4xl">
           <span className="text-brand2 text-sm py-5 ">{"<p>"}</span>
 
-          <p className="font-IBM w-full">
-            <span className="text-2xl font-extralight text-brand1">Hello!</span>
+          <p className={`${en ? "font-IBM " : "font-vazir"} w-full`}>
+            <span className="text-2xl font-extralight text-brand1">
+              {t("hello")}
+            </span>
             <br />
-            My name is Mani and I specialize in web developement that utilizes{" "}
-            <span className="text-brand1">HTML</span>,{" "}
+            {t("myName") + " "} <span className="text-brand1">HTML</span>,{" "}
             <span className="text-brand1">CSS</span>,{" "}
             <span className="text-brand1">JS</span>,{" "}
             <span className="text-brand1">REACT</span>,{" "}
             <span className="text-brand1">NODE</span> and{" "}
-            <span className="text-brand1">NEXT</span> etc. <br />
-            <br /> I am a highly motivated individual and eternal optimist
-            dedicated to writing clear, concise, robust code that works.
-            Striving to never stop learning and improving.When I&apos;m not coding,
-            I&apos;m <span className="text-brand1">writing blogs</span>,{" "}
-            <span className="text-brand1">reading</span>, or{" "}
-            <span className="text-brand1">playing games</span>. <br />
-            <br /> I like to have my perspective and belief systems challenged
-            so that I see the world through new eyes.
+            <span className="text-brand1">NEXT</span> {en ? "etc." : "و غیره"}{" "}
+            <br />
+            <br /> {t("smallDescription")}{" "}
+            <span className="text-brand1">{t("writeBlog")}</span>
+            {en ? ", " : "، یا"}{" "}
+            <span className="text-brand1">{t("reading")}</span>
+            {en ? ", or" : "، یا "}{" "}
+            <span className="text-brand1">{t("game")}</span>. <br />
+            <br /> {t("like")}
           </p>
 
           <span className="text-brand2 py-5 font-extralight text-sm ">

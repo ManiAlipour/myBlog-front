@@ -1,22 +1,26 @@
 "use client";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-const links = [
-  {
-    title: "Home",
-    href: "/",
-    id: 1,
-  },
-  {
-    title: "Blogs",
-    href: "/blog",
-    id: 2,
-  },
-];
+import Cookies from "js-cookie";
 
 function Links() {
   const pathname = usePathname();
+  const t = useTranslations("Header");
+  const local = Cookies.get("USER_LOCALE");
+
+  const links = [
+    {
+      title: "home",
+      href: `/${local}`,
+      id: 1,
+    },
+    {
+      title: "blogs",
+      href: "/blog",
+      id: 2,
+    },
+  ];
 
   return (
     <div className="flex text-sm gap-3 sm:text-base md:text-lg justify-end px-5 md:flex-1/4">
@@ -26,7 +30,7 @@ function Links() {
           key={l.id}
           href={l.href}
         >
-          {l.title}
+          {t(l.title)}
         </Link>
       ))}
     </div>

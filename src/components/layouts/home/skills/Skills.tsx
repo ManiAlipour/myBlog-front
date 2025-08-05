@@ -1,4 +1,5 @@
 import Title from "@/components/ui/layoutTitle/Title";
+import { useTranslations } from "next-intl";
 import { IconType } from "react-icons";
 import { AiOutlineHtml5 } from "react-icons/ai";
 import { FaCss3 } from "react-icons/fa";
@@ -56,6 +57,8 @@ const langs: ILangProps[] = [
 ];
 
 const Skills = () => {
+  const t = useTranslations("Skills");
+
   return (
     <div id="skills" className="min-h-screen flex flex-col py-20">
       <span className="text-9xl text-brand1 lg:flex hidden">
@@ -64,10 +67,7 @@ const Skills = () => {
         <span className="flex-1/3">{"</>"}</span>
       </span>
 
-      <Title
-        title="Skills"
-        description="I am striving to never stop learning and improving"
-      />
+      <Title title={t("title")} description={t("description")} />
 
       <div className="flex flex-col md:flex-row justify-center items-center gap-x-20">
         <SkillCard

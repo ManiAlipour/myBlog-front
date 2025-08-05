@@ -1,6 +1,41 @@
 {
-  "homePage": {
-    "sectionHeroTitle": "Delveloper",
-    "sectionHeroDescription": "I help business grow by crafting amazing web experiences. If you’re looking for a developer that likes to get stuff done"
+  "Header": {
+    "title": "Mani Alipour",
+    "blogs": "Blogs",
+    "home": "Home",
+    "searchPlaceholder": "Search in blogs"
+  },
+  "SectionHero": {
+    "title": "Mani Alipour",
+    "description": "I help business grow by crafting amazing web experiences. If you’re looking for a developer that likes to get stuff done",
+    "hey": "Hey",
+    "Im": "I’m",
+    "Name": "Mani",
+    "fullStack": "Full-Stack Developer",
+    "programmerLangs": "Programming Languages",
+    "devTools": "Development Tools",
+    "exp": "Year of Experience",
+    "talk": "Let’s Talk"
+  },
+  "AboutMe": {
+    "aboutMe": "About Me",
+    "hello": "Hello!",
+    "smallDescription": "I am a highly motivated individual and eternal optimist dedicated to writing clear, concise, robust code that works. Striving to never stop learning and improving.When I&apos;m not coding, I&apos;m",
+    "writeBlog": "writing blogs",
+    "reading": "reading",
+    "game": "playing games",
+    "like": "I like to have my perspective and belief systems challenged so that I see the world through new eyes.",
+    "myName": "My name is Mani and I specialize in web developement that utilizes "
+  },
+  "Skills": {
+    "title": "Skills",
+    "description": "I am striving to never stop learning and improving"
+  },
+  "Blogs": {
+    "title": "Blogs",
+    "description": "My thoughts on technology and business, welcome to subscribe",
+    "readMore": "Read More",
+    "text": "Text",
+    "date": "Date"
   }
 }

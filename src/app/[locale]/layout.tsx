@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import Providers from "../components/providers";
+import Providers from "../../components/providers";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
@@ -11,13 +11,22 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: { locale: string };
 }>) {
+  const isFa = params.locale === "fa";
+  const messages = await getMessages();
+
   return (
-    <html lang="en">
-      <body className="overflow-x-hidden max-w-screen-2xl mx-auto">
-        <NextIntlClientProvider>
+    <html
+      lang={params.locale}
+      dir={isFa ? "rtl" : "ltr"}
+      className={isFa ? "font-vazir" : "font-ubuntu"}
+    >
+      <body className="overflow-x-hidden max-w-screen mx-auto">
+        <NextIntlClientProvider locale={params.locale} messages={messages}>
           <Providers>{children}</Providers>
         </NextIntlClientProvider>
       </body>

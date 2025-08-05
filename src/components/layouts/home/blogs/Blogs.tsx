@@ -1,16 +1,15 @@
 import Button from "@/components/ui/button/Button";
 import Title from "@ui/layoutTitle/Title";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import Link from "next/link";
 
-
 const Blogs = async () => {
+  const t = await getTranslations("Blogs");
+
   return (
     <div id="blogs" className="min-h-screen bg-bg2 w-full flex flex-col py-20">
-      <Title
-        title="Blogs"
-        description="My thoughts on technology and business, welcome to subscribe"
-      />
+      <Title title={t("title")} description={t("description")} />
 
       <div
         className="flex flex-col md:flex-row gap-10 justify-baseline border-t border-b w-2/3 mx-auto
@@ -36,7 +35,9 @@ const Blogs = async () => {
           </span>
 
           <Link className="text-brand1" href="/">
-            <span className="border-b border-b-brand1 py-1">Read More </span>{" "}
+            <span className="border-b border-b-brand1 py-1">
+              {t("readMore")}{" "}
+            </span>{" "}
             {">>"}
           </Link>
 
@@ -46,12 +47,12 @@ const Blogs = async () => {
             </span>
 
             <span className="flex flex-1/4 gap-2 items-center md:flex-auto">
-              <span>Text</span>
+              <span>{t("text")}</span>
               <span className="text-gray-400">Mani</span>
             </span>
 
             <span className="flex flex-1/4 md:flex-auto gap-2 items-center">
-              <span>Data</span>
+              <span>{t("date")}</span>
               <span className="text-gray-400">10 Oct.2023</span>
             </span>
           </div>

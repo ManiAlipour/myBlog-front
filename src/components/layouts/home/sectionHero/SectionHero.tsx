@@ -1,5 +1,6 @@
 import Button from "@/components/ui/button/Button";
 import { getTranslations } from "next-intl/server";
+import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import { FiMapPin } from "react-icons/fi";
@@ -8,14 +9,24 @@ import { IoIosLink } from "react-icons/io";
 import { MdOutlineFileDownload, MdOutlineMailOutline } from "react-icons/md";
 
 const SectionHero = async () => {
-  const t = await getTranslations("homePage");
+  const t = await getTranslations("SectionHero");
+  const cookie = await cookies();
+  const locale = cookie.get("USER_LOCALE");
+
+  const en = locale?.value === "en";
 
   return (
     <div
       id="#"
       className="flex mb-22 justify-around items-center gap-10 w-full lg:max-h-screen flex-col lg:flex-row"
     >
-      <h1 className="text-6xl lg:hidden inline-block text-brand2">Developer</h1>
+      <h1
+        className={`text-6xl lg:hidden inline-block text-brand2 ${
+          en ? "font-ubuntu" : "font-morabba"
+        } `}
+      >
+        {t("title")}
+      </h1>
 
       <div className="flex flex-3/8 lg:px-10 items-center justify-center h-full">
         <div
@@ -75,19 +86,23 @@ const SectionHero = async () => {
 
       <div className="flex self-stretch [@media(max-width:768px)]:flex-col md:px-10 px-5 lg:p-2 flex-5/8">
         <div className="flex-3/8 flex flex-col justify-around py-5">
-          <h1 className="lg:text-6xl xl:text-7xl hidden lg:inline-block text-brand2">
-            {t("sectionHeroTitle")}
+          <h1
+            className={`lg:text-6xl ${
+              en ? "font-ubuntu" : "font-morabba"
+            } xl:text-7xl hidden lg:inline-block text-brand2`}
+          >
+            {t("title")}
           </h1>
           <div className="flex flex-col gap-3 text-4xl xl:text5xl">
             <span className="text-base text-brand2 -ml-5 opacity-70">
               {"</h1>"}
             </span>
-            <span>Hey</span>
+            <span>{t("hey")}</span>
             <span>
-              I’m <span className="text-brand1">Mani</span>,
+              {t("Im")} <span className="text-brand1">{t("Name")}</span>,
             </span>
             <span>
-              Full-Stack Developer{" "}
+              {t("fullStack")}{" "}
               <span className="text-base text-brand2 opacity-70">
                 {"</h1>"}
               </span>
@@ -99,7 +114,7 @@ const SectionHero = async () => {
               {"<p>"}
             </span>
             <br />
-            {t("sectionHeroDescription")}
+            {t("description")}
             <br />
             <span className="text-base text-gray-400 -ml-5 opacity-70">
               {"</p>"}
@@ -107,29 +122,35 @@ const SectionHero = async () => {
           </p>
 
           <Link
-            className="flex gap-3 items-center text-3xl text-brand1"
+            className={`flex gap-3 items-center text-3xl text-brand1`}
             href="/"
           >
-            Let’s Talk
+            {t("talk")}
             <span className="p-2 bg-grey rounded-full">
               <MdOutlineMailOutline />
             </span>
           </Link>
         </div>
 
-        <div className="flex-2/8 flex font-IBM flex-col justify-around items-center">
+        <div
+          className={`flex-2/8 flex ${
+            en ? "font-IBM" : "font-vazir"
+          } flex-col justify-around items-center`}
+        >
           <div className="w-[215px] flex flex-col font-light gap-8 justify-around items-center h-[378px] px-8 py-12 bg-bg2 rounded-[100px]">
             <div className="text-xl items-center flex gap-3">
               <span className="text-brand1 text-5xl">3</span>
-              Programming Languages
+              {t("programmerLangs")}
             </div>
+
             <div className="text-xl flex items-center gap-3">
               <span className="text-brand1 text-5xl">6</span>
-              Development Tools
+              {t("devTools")}
             </div>
+
             <div className="text-xl flex items-center gap-3">
               <span className="text-brand1 text-5xl">1</span>
-              Year of Experience
+              {t("exp")}
             </div>
           </div>
         </div>
