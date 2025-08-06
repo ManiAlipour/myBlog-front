@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import Header from "../features/header/Header";
 import Cookies from "js-cookie";
+import Footer from "../features/footer/Footer";
+import AOSProvider from "./AOS";
 
 const Providers = ({
   children,
@@ -23,8 +25,11 @@ const Providers = ({
         dir={en ? "ltr" : "rtl"}
         className={`container mx-auto ${en ? "font-ubuntu" : "font-vazir"}`}
       >
-        <Header />
-        {children}
+        <AOSProvider>
+          <Header />
+          {children}
+          <Footer />
+        </AOSProvider>
       </div>
     );
 };

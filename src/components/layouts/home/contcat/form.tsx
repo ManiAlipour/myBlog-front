@@ -26,10 +26,17 @@ const Form = () => {
   const t = useTranslations("ContactUs");
   return (
     <form
-      className="flex flex-wrap justify-around w-2/3 mx-auto items-center gap-20 px-20"
+      className="
+        w-full max-w-2xl mx-auto flex flex-col gap-6
+        px-4 py-6 md:px-12
+        rounded-xl shadow
+        bg-[#f7f3ec] border border-[#ede2d3]
+        dark:bg-[#22201e] dark:border-[#36312a]
+        backdrop-blur-sm
+      "
       onSubmit={formik.handleSubmit}
     >
-      <div className="flex-1/4">
+      <div>
         <Input
           required
           {...formik.getFieldProps("name")}
@@ -39,7 +46,7 @@ const Form = () => {
         />
       </div>
 
-      <div className="flex-1/4">
+      <div>
         <Input
           required
           {...formik.getFieldProps("email")}
@@ -49,7 +56,7 @@ const Form = () => {
         />
       </div>
 
-      <div className="flex-4/4">
+      <div>
         <Input
           required
           {...formik.getFieldProps("message")}
@@ -57,10 +64,14 @@ const Form = () => {
           type="textarea"
           placeholder={t("massagePlaceholder")}
           name="message"
+          rows={5} // اون اینپوت اگه ساپورت کنه
         />
       </div>
-      <Button type="submit" className="bg-brand2">
-        <span className="font-bold">{t("sendBtn")}</span>{" "}
+      <Button
+        type="submit"
+        className="bg-brand2 w-full md:w-auto flex justify-center items-center gap-2"
+      >
+        <span className="font-bold">{t("sendBtn")}</span>
         <TbSend className="text-2xl" />
       </Button>
     </form>

@@ -8,10 +8,12 @@ const Blogs = async () => {
   const t = await getTranslations("Blogs");
 
   return (
-    <div id="blogs" className="min-h-screen bg-bg2 w-full flex flex-col py-20">
+    <div data-aos="fade-up" id="blogs" className="min-h-screen bg-bg2 w-full flex flex-col py-20">
       <Title title={t("title")} description={t("description")} />
 
       <div
+        data-aos="fade-up"
+        data-aos-anchor-placement="top-center"
         className="flex flex-col md:flex-row gap-10 justify-baseline border-t border-b w-2/3 mx-auto
        my-10 py-10"
       >
@@ -60,8 +62,8 @@ const Blogs = async () => {
       </div>
 
       <div className="flex justify-center items-center gap-10">
-        <Button color="blue">View More</Button>
-        <Button color="dark">Subscribe</Button>
+        <Button type="button" color="blue">View More</Button>
+        <Button type="button" color="dark">Subscribe</Button>
       </div>
     </div>
   );

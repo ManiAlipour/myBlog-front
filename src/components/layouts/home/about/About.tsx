@@ -1,17 +1,16 @@
-import { getTranslations } from "next-intl/server";
-import { cookies } from "next/headers";
+import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 
 const About = async () => {
   const t = await getTranslations("AboutMe");
-  const cookie = await cookies();
-  const locale = cookie.get("USER_LOCALE");
+  const locale = await getLocale();
 
-  const en = locale?.value === "en";
+  const en = locale === "en";
 
   return (
     <div
       id="about"
+      data-aos="fade-up"
       className="flex md:px-10 gap-y-5 px-0 justify-center flex-col xl:flex-row items-center my-20 bg-bg2 min-h-screen py-20"
     >
       <div className="flex-1/2 px-10  gap-y-10 flex w-full flex-col items-start justify-around self-stretch">

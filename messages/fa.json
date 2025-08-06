@@ -49,5 +49,8 @@
     "messageLable": "پیام شما",
     "massagePlaceholder": "پیام خود را وارد کنید",
     "sendBtn": "ارسال پیام"
+  },
+  "Footer": {
+    "copy": "تمام حقوق برای ManiAlipour محفوظ است © 2025"
   }
 }

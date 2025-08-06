@@ -4,7 +4,7 @@ interface IButtonProps {
   children: React.ReactNode;
   color?: "blue" | "dark" | "light";
   className?: string;
-  type: "submit" | "reset" | "button";
+  type?: "submit" | "reset" | "button";
 }
 
 const Button = ({

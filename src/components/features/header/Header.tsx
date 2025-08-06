@@ -3,7 +3,6 @@ import Links from "./Links";
 import SearchBox from "./SearchBox";
 import { FaGithubAlt, FaInstagram, FaTelegramPlane } from "react-icons/fa";
 import { useTranslations } from "next-intl";
-import LanguageSwitcher from "../languageSwitcher/LanguageSwitcher";
 import Cookies from "js-cookie";
 
 function Header() {

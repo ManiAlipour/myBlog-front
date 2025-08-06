@@ -60,7 +60,7 @@ const Skills = () => {
   const t = useTranslations("Skills");
 
   return (
-    <div id="skills" className="min-h-screen flex flex-col py-20">
+    <div data-aos="fade-up" id="skills" className="min-h-screen flex flex-col">
       <span className="text-9xl text-brand1 lg:flex hidden">
         <span className="flex-1/3"></span>
         <span className="flex-1/3"></span>
@@ -103,6 +103,7 @@ const SkillCard = ({
   desc: string;
 }) => (
   <div
+    data-aos="zoom-out"
     className="w-[288px] h-[132px] uppercase bg-white my-10 rounded-xl 
   flex flex-col items-center font-IBM justify-around text-black"
   >
@@ -137,7 +138,7 @@ const LanguegeCard = ({
   iconColor = "white",
 }: ILangProps) => {
   return (
-    <div className="flex flex-col items-center gap-2">
+    <div data-aos="zoom-in" className="flex flex-col items-center gap-2">
       <div
         className={`w-[100px] h-[100px] flex justify-center items-center
          rounded-full text-4xl ${bgColors[color]}  text-${iconColor}`}

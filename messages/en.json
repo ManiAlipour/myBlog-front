@@ -49,5 +49,8 @@
     "messageLable": "Your message",
     "massagePlaceholder": "Enter your message",
     "sendBtn": "Send Message"
+  },
+  "Footer": {
+    "copy": "© 2025 ManiAlipour. All rights reserved."
   }
 }
