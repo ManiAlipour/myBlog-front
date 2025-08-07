@@ -31,9 +31,9 @@ const Title = async ({
 
       <TypewriterOnScroll
         text={description}
-        className={`${
+        className={` px-2 text-center font-extralight py-2 block ${
           en ? "font-IBM " : "font-vazir"
-        }px-0.5 text-center font-extralight`}
+        }`}
         speed={70}
         cursor="▍"
       />
