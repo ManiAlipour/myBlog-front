@@ -1,6 +1,5 @@
 import { cookies } from "next/headers";
 import TitleBorderBottom from "./TitleWithBBorder";
-import Typewriter from "@/components/anim/TypingAnimation";
 import TypewriterOnScroll from "@/components/anim/TypingOnScroll";
 
 const Title = async ({

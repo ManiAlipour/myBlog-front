@@ -9,7 +9,7 @@ const ContactUs = () => {
 
   return (
     <FadeUpOnScroll
-      viewport={{ once: false, amount: 0.4 }}
+      viewport={{ once: false }}
       className="min-h-screen bg-bg2 w-full flex flex-col py-20"
     >
       <Title title={t("title")} description={t("description")} />

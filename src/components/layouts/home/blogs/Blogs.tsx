@@ -11,7 +11,7 @@ const Blogs = async () => {
 
   return (
     <FadeUpOnScroll
-      viewport={{ once: false, amount: 0.4 }}
+      viewport={{ once: false }}
       id="blogs"
       className="min-h-screen bg-bg2 w-full flex flex-col py-20"
     >

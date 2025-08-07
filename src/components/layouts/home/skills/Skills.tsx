@@ -106,7 +106,7 @@ const SkillCard = ({
   desc: string;
 }) => (
   <ZoomOutOnScroll
-    viewport={{ once: false, amount: 0.4 }}
+    viewport={{ once: false }}
     className="w-[288px] h-[132px] uppercase bg-white my-10 rounded-xl 
   flex flex-col items-center font-IBM justify-around text-black"
   >
@@ -142,10 +142,10 @@ const LanguegeCard = ({
 }: ILangProps) => {
   return (
     <ZoomInOnScroll
-      viewport={{ once: false, amount: 0.4 }}
+      viewport={{ once: false }}
       className="flex flex-col items-center gap-2"
     >
-      <div
+      <div``
         className={`w-[100px] h-[100px] flex justify-center items-center
          rounded-full text-4xl ${bgColors[color]}  text-${iconColor}`}
       >

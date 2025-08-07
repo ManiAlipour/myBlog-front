@@ -16,7 +16,7 @@ const About = async () => {
     >
       <div className="flex-1/2 px-10 flex w-full flex-col items-start h-full justify-around gap-y-10">
         {/* تایتل: بیرون از FadeUpOnScroll و بدون mb! */}
-        <FadeUpOnScroll viewport={{ once: false, amount: 0.4 }}>
+        <FadeUpOnScroll viewport={{ once: false }}>
           <span
             className={`text-3xl px-6 py-3 border-2 border-brand1 rounded-tl-4xl rounded-br-4xl self-start ${
               en ? "font-ubuntu" : "font-morabba"
@@ -27,7 +27,7 @@ const About = async () => {
         </FadeUpOnScroll>
 
         {/* باکس توضیحات: فاصله با بالا به خاطر gap-y-10 در والد */}
-        <FadeUpOnScroll viewport={{ once: false, amount: 0.4 }}>
+        <FadeUpOnScroll viewport={{ once: false }}>
           <MotionFadeUp className="self-start bg-bg1 py-5 px-2 md:p-10 rounded-4xl w-full">
             <span className="text-brand2 text-sm py-5">{"<p>"}</span>
             <p className={`${en ? "font-IBM " : "font-vazir"} w-full`}>
@@ -58,7 +58,7 @@ const About = async () => {
       </div>
 
       <FadeUpOnScroll
-        viewport={{ once: true, amount: 0.4 }}
+        viewport={{ once: true }}
         className="flex-1/2 flex justify-center items-center"
       >
         <Image
