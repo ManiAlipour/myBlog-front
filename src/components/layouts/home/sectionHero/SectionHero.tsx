@@ -70,7 +70,7 @@ const SectionHero = () => {
             variants={sectionVariant}
             custom={0.08}
           >
-            <Typewriter text={t("title")} cursor="|" speed={70} delay={1000} />
+            <Typewriter text={t("title")} speed={70} delay={1000} />
           </motion.h1>
 
           {/* PROFILE CARD */}
