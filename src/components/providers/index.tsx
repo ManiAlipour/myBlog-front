@@ -1,16 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
 import Header from "../features/header/Header";
-import Cookies from "js-cookie";
+import { useLocale } from "next-intl";
 import Footer from "../features/footer/Footer";
-import AOSProvider from "./AOS";
 
 const Providers = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  const local = Cookies.get("USER_LOCALE") || "en";
+  const local = useLocale();
   const en = local === "en";
 
   const [mounted, setMounted] = useState(false);
@@ -25,11 +24,9 @@ const Providers = ({
         dir={en ? "ltr" : "rtl"}
         className={`container mx-auto ${en ? "font-ubuntu" : "font-vazir"}`}
       >
-        <AOSProvider>
-          <Header />
-          {children}
-          <Footer />
-        </AOSProvider>
+        <Header />
+        {children}
+        <Footer />
       </div>
     );
 };

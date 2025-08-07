@@ -1,8 +1,9 @@
 "use client";
+import FadeDownOnScroll from "@/components/anim/FadeDownOnScroll";
 import Button from "@/components/ui/button/Button";
 import Input from "@/components/ui/input/Input";
 import { useFormik } from "formik";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { TbSend } from "react-icons/tb";
 import * as Yup from "yup";
 
@@ -22,6 +23,9 @@ const Form = () => {
       console.log(values);
     },
   });
+
+  const locale = useLocale();
+  const en = locale === "en";
 
   const t = useTranslations("ContactUs");
   return (
@@ -64,16 +68,19 @@ const Form = () => {
           type="textarea"
           placeholder={t("massagePlaceholder")}
           name="message"
-          rows={5} // اون اینپوت اگه ساپورت کنه
+          rows={5}
         />
       </div>
-      <Button
-        type="submit"
-        className="bg-brand2 w-full md:w-auto flex justify-center items-center gap-2"
-      >
-        <span className="font-bold">{t("sendBtn")}</span>
-        <TbSend className="text-2xl" />
-      </Button>
+      <FadeDownOnScroll offset={-100} className="w-full flex justify-center">
+        <Button
+          type="submit"
+          className={`bg-brand2 hover:scale-105 transition-all duration-300 w-full md:w-auto flex justify-center 
+          items-center gap-2 ${en ? "font-ubuntu" : "font-vazir"}`}
+        >
+          <span className="font-bold">{t("sendBtn")}</span>
+          <TbSend className="text-2xl" />
+        </Button>
+      </FadeDownOnScroll>
     </form>
   );
 };

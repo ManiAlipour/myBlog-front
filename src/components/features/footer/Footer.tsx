@@ -5,8 +5,8 @@ import { FiGithub } from "react-icons/fi";
 const Footer = () => {
   const t = useTranslations("Footer");
   return (
-    <div className="flex justify-around items-center px-5 py-3">
-      <span>{t("copy")}</span>
+    <div className="flex justify-between md:justify-around items-center px-5 py-3">
+      <span className="text-sm md:text-base ">{t("copy")}</span>
 
       <span className="flex gap-3">
         <span

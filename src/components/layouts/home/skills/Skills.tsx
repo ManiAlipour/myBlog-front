@@ -1,3 +1,6 @@
+import FadeUpOnScroll from "@/components/anim/FadeUpOnScroll";
+import ZoomInOnScroll from "@/components/anim/ZoomInOnScroll";
+import ZoomOutOnScroll from "@/components/anim/ZoomOutOnScroll";
 import Title from "@/components/ui/layoutTitle/Title";
 import { useTranslations } from "next-intl";
 import { IconType } from "react-icons";
@@ -60,7 +63,7 @@ const Skills = () => {
   const t = useTranslations("Skills");
 
   return (
-    <div data-aos="fade-up" id="skills" className="min-h-screen flex flex-col">
+    <FadeUpOnScroll id="skills" className="min-h-screen flex flex-col">
       <span className="text-9xl text-brand1 lg:flex hidden">
         <span className="flex-1/3"></span>
         <span className="flex-1/3"></span>
@@ -87,7 +90,7 @@ const Skills = () => {
           <LanguegeCard key={l.id} {...l} />
         ))}
       </div>
-    </div>
+    </FadeUpOnScroll>
   );
 };
 
@@ -102,15 +105,15 @@ const SkillCard = ({
   title: string;
   desc: string;
 }) => (
-  <div
-    data-aos="zoom-out"
+  <ZoomOutOnScroll
+    viewport={{ once: false, amount: 0.4 }}
     className="w-[288px] h-[132px] uppercase bg-white my-10 rounded-xl 
   flex flex-col items-center font-IBM justify-around text-black"
   >
     <Icon className="text-3xl" />
     <span className="text-lg">{title}</span>
     <span className="font-light text-gray-400">{desc}</span>
-  </div>
+  </ZoomOutOnScroll>
 );
 
 const bgColors = {
@@ -138,7 +141,10 @@ const LanguegeCard = ({
   iconColor = "white",
 }: ILangProps) => {
   return (
-    <div data-aos="zoom-in" className="flex flex-col items-center gap-2">
+    <ZoomInOnScroll
+      viewport={{ once: false, amount: 0.4 }}
+      className="flex flex-col items-center gap-2"
+    >
       <div
         className={`w-[100px] h-[100px] flex justify-center items-center
          rounded-full text-4xl ${bgColors[color]}  text-${iconColor}`}
@@ -147,6 +153,6 @@ const LanguegeCard = ({
       </div>
 
       <span className={`${textColors[color]}`}>{title}</span>
-    </div>
+    </ZoomInOnScroll>
   );
 };

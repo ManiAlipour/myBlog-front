@@ -1,5 +1,7 @@
 import { cookies } from "next/headers";
 import TitleBorderBottom from "./TitleWithBBorder";
+import Typewriter from "@/components/anim/TypingAnimation";
+import TypewriterOnScroll from "@/components/anim/TypingOnScroll";
 
 const Title = async ({
   title,
@@ -27,13 +29,14 @@ const Title = async ({
         <TitleBorderBottom />
       </span>
 
-      <p
+      <TypewriterOnScroll
+        text={description}
         className={`${
           en ? "font-IBM " : "font-vazir"
         }px-0.5 text-center font-extralight`}
-      >
-        {description}
-      </p>
+        speed={70}
+        cursor="▍"
+      />
     </div>
   );
 };
