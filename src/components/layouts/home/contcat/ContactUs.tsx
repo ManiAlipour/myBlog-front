@@ -1,26 +1,23 @@
 import Title from "@ui/layoutTitle/Title";
 import Form from "./form";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import FadeUpOnScroll from "@/components/anim/FadeUpOnScroll";
 
 const ContactUs = () => {
   const t = useTranslations("ContactUs");
-  const locale = useLocale();
+  // const locale = useLocale();
 
   return (
-    <FadeUpOnScroll
-      viewport={{ once: false }}
-      className="min-h-screen bg-bg2 w-full flex flex-col py-20"
-    >
+    <FadeUpOnScroll className="md:min-h-screen bg-bg2 w-full flex flex-col py-20">
       <Title title={t("title")} description={t("description")} />
-      <h2
-        className={`text-3xl self-center my-20 text-brand1  px-6 py-3 border-2 border-brand1
+      {/* <h2
+        className={`text-3xl h self-center my-20 text-brand1  px-6 py-3 border-2 border-brand1
       ${
         locale === "en" ? "font-IBM " : "font-morabba"
       } rounded-tl-4xl rounded-br-4xl`}
       >
         {t("sendMessageTitle")}
-      </h2>
+      </h2> */}
       <Form />
     </FadeUpOnScroll>
   );

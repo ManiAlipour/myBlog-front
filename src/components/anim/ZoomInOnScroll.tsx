@@ -1,5 +1,5 @@
 "use client";
-import { HTMLMotionProps, motion, useAnimation, Variants } from "framer-motion";
+import { HTMLMotionProps, motion } from "framer-motion";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
 import React from "react";

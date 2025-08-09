@@ -80,7 +80,7 @@ const SectionHero = () => {
 
           {/* PROFILE CARD */}
           <motion.div
-            className="flex flex-3/8 lg:px-10 items-center justify-center h-full"
+            className="md:flex hidden flex-3/8 lg:px-10 items-center justify-center h-full"
             variants={sectionVariant}
             custom={0.12}
           >
@@ -152,7 +152,7 @@ const SectionHero = () => {
                   initial="hidden"
                   animate="visible"
                 >
-                  {badgeList.map((tech, i) => (
+                  {badgeList.map((tech) => (
                     <motion.span
                       key={tech}
                       variants={badgeItem}

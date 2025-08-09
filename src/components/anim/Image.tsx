@@ -20,6 +20,7 @@ type AnimatedImageProps = ImageProps & {
 export default function AnimatedImage({
   duration = 0.7,
   initialScale = 0.94,
+  alt = "",
   ...rest
 }: AnimatedImageProps) {
   return (
@@ -34,7 +35,7 @@ export default function AnimatedImage({
         borderRadius: "inherit",
       }}
     >
-      <Image {...rest} />
+      <Image {...rest} alt={alt} />
     </motion.div>
   );
 }

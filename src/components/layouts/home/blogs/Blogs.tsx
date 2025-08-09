@@ -1,24 +1,21 @@
 import FadeDownOnScroll from "@/components/anim/FadeDownOnScroll";
 import FadeUpOnScroll from "@/components/anim/FadeUpOnScroll";
+import BlogCard from "@features/blogCard/BlogCard";
 import Button from "@/components/ui/button/Button";
 import Title from "@ui/layoutTitle/Title";
 import { getTranslations } from "next-intl/server";
-import Image from "next/image";
-import Link from "next/link";
 
 const Blogs = async () => {
   const t = await getTranslations("Blogs");
 
   return (
     <FadeUpOnScroll
-      viewport={{ once: false }}
       id="blogs"
       className="min-h-screen bg-bg2 w-full flex flex-col py-20"
     >
       <Title title={t("title")} description={t("description")} />
 
-      <div
-       
+      {/* <div
         className="flex flex-col md:flex-row gap-10 justify-baseline border-t border-b w-2/3 mx-auto
        my-10 py-10"
       >
@@ -63,6 +60,39 @@ const Blogs = async () => {
               <span className="text-gray-400">10 Oct.2023</span>
             </span>
           </div>
+        </div>
+      </div> */}
+
+      <div className="px-2 py-5 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <BlogCard
+            title="نکات استفاده از شمع در دکوراسیون"
+            excerpt="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام"
+            image="/images/blog-image.png"
+            date="8 مرداد 1403"
+            readTime="5 دقیقه"
+            href="/blog/candle-tips"
+          />
+
+          <BlogCard
+            title="چگونه فضای آرامش‌بخش ایجاد کنیم؟"
+            excerpt="با چند نکته ساده، می‌توانید خانه‌ای پر از حس راحتی بسازید..."
+            image="/images/blog-image.png"
+            date="5 مرداد 1403"
+            readTime="6 دقیقه"
+            href="/blog/calm-home"
+            className="hidden md:flex"
+          />
+
+          <BlogCard
+            title="ترندهای دکوراسیون 2025"
+            excerpt="نگاهی به جدیدترین ترندها در طراحی داخلی خانه و چیدمان وسایل..."
+            image="/images/blog-image.png"
+            date="1 مرداد 1403"
+            readTime="4 دقیقه"
+            href="/blog/interior-trends"
+            className="hidden md:flex"
+          />
         </div>
       </div>
 
