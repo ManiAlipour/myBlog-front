@@ -47,7 +47,7 @@ const skillsLangs: ILangProps[] = [
   {
     Icon: SiPrisma,
     title: "Prisma",
-    color: "next",
+    color: "css",
     id: 7,
   },
   {

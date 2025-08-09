@@ -1,112 +1,78 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { useLanguageSwitcher } from "@/hooks/useLanguageSwitcher";
+import { useRouter, usePathname } from "next/navigation";
+import { useLocale } from "next-intl";
+import { useState } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 
-interface Lang {
-  code: "fa" | "en";
-  label: string;
-  dir: "ltr" | "rtl";
-}
-
-const LANGUAGES: Lang[] = [
-  { code: "fa", label: "فارسی", dir: "rtl" },
-  { code: "en", label: "English", dir: "ltr" },
+const languages = [
+  {
+    code: "en",
+    name: "English",
+    flag: "/images/flags/english.svg",
+    dir: "ltr",
+  },
+  { code: "fa", name: "فارسی", flag: "/images/flags/iran.svg", dir: "rtl" },
 ];
 
-const LanguageSwitcher = () => {
-  const { currentLocale, switchLanguage } = useLanguageSwitcher();
-  const [open, setOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+export default function LanguageSwitcher() {
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
 
-  // برای بستن دراپ‌دان هنگام کلیک بیرون
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setOpen(false);
-      }
-    }
-    if (open) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [open]);
+  const currentLang = languages.find((l) => l.code === locale) || languages[0];
 
-  const currentLang =
-    LANGUAGES.find((l) => l.code === currentLocale) || LANGUAGES[0];
+  const changeLanguage = (code: string) => {
+    setIsOpen(false);
+    router.push(`/${code}`);
+  };
 
   return (
-    <div className="relative inline-block" ref={dropdownRef}>
+    <div className="relative inline-block text-left">
+      {/* Trigger Button */}
       <button
-        onClick={() => setOpen((v) => !v)}
-        type="button"
-        className="text-white bg-blue-700 hover:bg-blue-800 
-        focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium
-         rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center
-          dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        aria-haspopup="listbox"
-        aria-expanded={open}
+        className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/10 border border-white/20 
+                   hover:bg-white/20 backdrop-blur-lg transition cursor-pointer"
+        onClick={() => setIsOpen(!isOpen)}
       >
-        {/* نمایش زبان جاری */}
-        <span className="truncate">{currentLang.label}</span>
-        <svg
-          className="w-2.5 h-2.5 ms-3"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 10 6"
-        >
-          <path
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="m1 1 4 4 4-4"
-          />
-        </svg>
+        <Image
+          src={currentLang.flag}
+          alt={currentLang.name}
+          width={20}
+          height={20}
+        />
+        <span className="text-white">{currentLang.name}</span>
+        <span className="text-white/60 text-sm">▼</span>
       </button>
 
-      {/* Dropdown menu */}
-      <div
-        className={`absolute left-0 z-10 mt-2 min-w-full bg-white rounded-lg shadow-sm 
-        divide-y divide-gray-100 ring-1 ring-black ring-opacity-5 dark:bg-gray-700 dark:divide-gray-600 
-        transition-all duration-150 ${open ? "block" : "hidden"}`}
-        role="menu"
-        tabIndex={-1}
-      >
-        <ul
-          className="py-2 text-sm text-gray-700 dark:text-gray-200"
-          aria-labelledby="dropdownDividerButton"
-        >
-          {LANGUAGES.map((lang) => (
-            <li key={lang.code} dir={lang.dir}>
+      {/* Dropdown */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -5 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -5 }}
+            transition={{ duration: 0.15 }}
+            className="absolute z-50 right-0 mt-2 w-36 rounded-lg bg-[#1a1a1a] shadow-lg border border-white/10 overflow-hidden"
+          >
+            {languages.map((lang) => (
               <button
-                onClick={() => {
-                  setOpen(false);
-                  if (lang.code !== currentLocale) switchLanguage(lang.code);
-                }}
-                disabled={lang.code === currentLocale}
-                className={`w-full px-4 py-2 text-left ${
-                  lang.code === currentLocale
-                    ? "opacity-60 cursor-not-allowed"
-                    : "hover:bg-gray-100 dark:hover:bg-gray-600"
-                }`}
-                role="option"
-                aria-selected={lang.code === currentLocale}
+                key={lang.code}
+                onClick={() => changeLanguage(lang.code)}
+                className={`flex w-full items-center gap-2 px-3 py-2 text-left text-sm 
+                           hover:bg-white/10 transition ${
+                             locale === lang.code ? "bg-white/10" : ""
+                           }`}
               >
-                {lang.label}
+                <Image src={lang.flag} alt={lang.name} width={18} height={18} />
+                <span className="text-white">{lang.name}</span>
               </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
-};
-
-export default LanguageSwitcher;
+}

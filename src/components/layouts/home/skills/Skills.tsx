@@ -11,6 +11,7 @@ import skillsLangs, { ILangProps } from "@/utils/constans/skils";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
+import SkillsSlider from "@/components/features/LanguageSlider/LanguageSlider";
 
 const Skills = () => {
   const t = useTranslations("Skills");
@@ -46,9 +47,7 @@ const Skills = () => {
       </div>
 
       <div className="md:flex hidden flex-wrap justify-center gap-20">
-        {skillsLangs.map((l) => (
-          <LanguegeCard key={l.id} {...l} />
-        ))}
+        <SkillsSlider />
       </div>
 
       {/* موبایل */}

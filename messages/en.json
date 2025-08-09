@@ -3,8 +3,11 @@
     "title": "Mani Alipour",
     "blogs": "Blogs",
     "home": "Home",
+    "about": "About",
+    "contact": "Contact",
     "searchPlaceholder": "Search in blogs"
   },
+
   "SectionHero": {
     "title": "Mani Alipour",
     "description": "I help business grow by crafting amazing web experiences. If you’re looking for a developer that likes to get stuff done",
