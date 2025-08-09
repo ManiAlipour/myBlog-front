@@ -1,17 +1,16 @@
-import { cookies } from "next/headers";
 import TitleBorderBottom from "./TitleWithBBorder";
 import TypewriterOnScroll from "@/components/anim/TypingOnScroll";
+import { useLocale } from "next-intl";
 
-const Title = async ({
+const Title = ({
   title,
   description,
 }: {
   title: string;
   description: string;
 }) => {
-  const cookie = await cookies();
+  const locale = useLocale();
 
-  const { value: locale } = cookie.get("USER_LOCALE") || { value: "en" };
   const en = locale === "en";
 
   return (

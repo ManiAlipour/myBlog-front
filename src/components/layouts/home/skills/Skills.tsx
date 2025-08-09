@@ -1,3 +1,4 @@
+"use client";
 import FadeUpOnScroll from "@/components/anim/FadeUpOnScroll";
 import ZoomInOnScroll from "@/components/anim/ZoomInOnScroll";
 import ZoomOutOnScroll from "@/components/anim/ZoomOutOnScroll";
@@ -7,12 +8,21 @@ import { IconType } from "react-icons";
 import { RiComputerLine } from "react-icons/ri";
 import { TbDeviceMobile } from "react-icons/tb";
 import skillsLangs, { ILangProps } from "@/utils/constans/skils";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 
 const Skills = () => {
   const t = useTranslations("Skills");
+  const [showAll, setShowAll] = useState(false);
+
+  const visibleLangs = showAll ? skillsLangs : skillsLangs.slice(0, 5);
 
   return (
-    <FadeUpOnScroll id="skills" className="min-h-screen flex flex-col">
+    <FadeUpOnScroll
+      id="skills"
+      className="md:min-h-screen py-20 md:py-0 flex flex-col"
+    >
       <span className="text-9xl text-brand1 lg:flex hidden">
         <span className="flex-1/3"></span>
         <span className="flex-1/3"></span>
@@ -21,13 +31,13 @@ const Skills = () => {
 
       <Title title={t("title")} description={t("description")} />
 
+      {/* دسکتاپ */}
       <div className="md:flex hidden flex-col md:flex-row justify-center items-center gap-x-20">
         <SkillCard
           Icon={RiComputerLine}
           desc="HTML·CSS·JS·REACT..."
           title="web developement"
         />
-
         <SkillCard
           Icon={TbDeviceMobile}
           desc="REACT-NATIVE"
@@ -41,15 +51,42 @@ const Skills = () => {
         ))}
       </div>
 
-      <div className="flex md:hidden gap-5 justify-around items-center flex-wrap">
-        {skillsLangs.map((l, index) => (
-          <LanguegeCardOnMobile
-            fullWidthIndex={[2, 5]}
-            index={index}
-            key={l.id}
-            {...l}
-          />
-        ))}
+      {/* موبایل */}
+
+      <div className="flex md:hidden flex-col items-center gap-5 mt-5 w-full">
+        <div className="grid grid-cols-2 gap-4 w-full">
+          <AnimatePresence>
+            {visibleLangs.map((l, index) => {
+              const isFullWidth = [2, 5].includes(index); // فقط برای مثال
+              return (
+                <motion.div
+                  key={l.id}
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className={isFullWidth ? "col-span-2" : ""}
+                >
+                  <LanguegeCardOnMobile
+                    fullWidthIndex={[2, 5]}
+                    index={index}
+                    {...l}
+                  />
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </div>
+
+        {skillsLangs.length > 5 && (
+          <button
+            className="bg-bg2 px-4 py-2 rounded-xl flex gap-2 items-center justify-center"
+            onClick={() => setShowAll(!showAll)}
+          >
+            {showAll ? "بستن" : "نمایش بیشتر"}
+            {showAll ? <FaArrowUp /> : <FaArrowDown />}
+          </button>
+        )}
       </div>
     </FadeUpOnScroll>
   );
@@ -76,6 +113,7 @@ const SkillCard = ({
   </ZoomOutOnScroll>
 );
 
+// رنگ‌ها
 const bgColors = {
   html: "bg-html",
   css: "bg-css",
@@ -99,20 +137,17 @@ const LanguegeCard = ({
   title,
   color,
   iconColor = "white",
-}: ILangProps) => {
-  return (
-    <ZoomInOnScroll className="flex flex-col items-center gap-2">
-      <div
-        className={`w-[100px] h-[100px] flex justify-center items-center
-         rounded-full text-4xl ${bgColors[color]}  text-${iconColor}`}
-      >
-        <Icon />
-      </div>
-
-      <span className={`${textColors[color]}`}>{title}</span>
-    </ZoomInOnScroll>
-  );
-};
+}: ILangProps) => (
+  <ZoomInOnScroll className="flex flex-col items-center gap-2">
+    <div
+      className={`w-[100px] h-[100px] flex justify-center items-center
+         rounded-full text-4xl ${bgColors[color]} text-${iconColor}`}
+    >
+      <Icon />
+    </div>
+    <span className={`${textColors[color]}`}>{title}</span>
+  </ZoomInOnScroll>
+);
 
 interface ILangMobileProps extends ILangProps {
   fullWidthIndex?: number[];
@@ -125,19 +160,31 @@ const LanguegeCardOnMobile = ({
   color,
   index,
   fullWidthIndex = [],
-  // iconColor = "white",
   className = "",
 }: ILangMobileProps) => {
-  const isFullWidth = fullWidthIndex.indexOf(index as number);
+  const isFullWidth = fullWidthIndex.indexOf(index as number) >= 0;
+
   return (
     <ZoomInOnScroll
-      className={`flex my-3  bg-bg2 items-center px-4 py-2 justify-center gap-4 
-      rounded-full ${textColors[color]} ${className} text-lg ${
-        isFullWidth >= 0 ? "w-2/3 mx-auto" : "min-w-1/3"
-      } `}
+      className={`flex font-ubuntu items-center px-5 py-3 my-2 gap-4 rounded-2xl 
+      backdrop-blur-md bg-white/10 shadow-lg border border-white/10
+      transition-all duration-300 hover:scale-105 hover:bg-white/20
+      ${textColors[color]} ${className} text-base font-medium
+      ${isFullWidth ? "w-2/3 mx-auto" : "flex-1/2"} `}
     >
-      <Icon className="text-3xl" />
-      <span>{title}</span>
+      <div
+        className={`w-12 h-12 flex items-center justify-center rounded-full shadow-md ${bgColors[color]} bg-opacity-80`}
+      >
+        <Icon
+          className={`${
+            color === "next" || color === "js" || color === "react"
+              ? "text-black"
+              : "text-white"
+          } text-2xl`}
+        />
+      </div>
+
+      <span className="whitespace-nowrap">{title}</span>
     </ZoomInOnScroll>
   );
 };
