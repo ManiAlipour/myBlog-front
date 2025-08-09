@@ -29,7 +29,9 @@
   },
   "Skills": {
     "title": "Skills",
-    "description": "I am striving to never stop learning and improving"
+    "description": "I am striving to never stop learning and improving",
+    "open": "Show more",
+    "close": "close"
   },
   "Blogs": {
     "title": "Blogs",

@@ -83,7 +83,7 @@ const Skills = () => {
             className="bg-bg2 px-4 py-2 rounded-xl flex gap-2 items-center justify-center"
             onClick={() => setShowAll(!showAll)}
           >
-            {showAll ? "بستن" : "نمایش بیشتر"}
+            {showAll ? t("close") : t("open")}
             {showAll ? <FaArrowUp /> : <FaArrowDown />}
           </button>
         )}

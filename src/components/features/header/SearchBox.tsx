@@ -7,67 +7,70 @@ import { useTranslations } from "next-intl";
 
 function SearchBox() {
   const [open, setOpen] = useState(false);
-
   const inputRef = useRef<HTMLInputElement | null>(null);
-
-  useEffect(() => {
-    if (open && inputRef.current) inputRef.current.focus();
-  }, [open]);
 
   const locale = Cookies.get("USER_LOCALE") || "en";
   const en = locale === "en";
   const t = useTranslations("Header");
 
+  useEffect(() => {
+    if (open && inputRef.current) inputRef.current.focus();
+  }, [open]);
+
   return (
-    <div className={`md:flex-1/4 ${en || "ml-3"}`}>
-      <div className="bg-white hidden md:block md:w-full relative p-2 rounded-full">
+    <div
+      className={`md:flex-1/4 relative flex items-center ${
+        en ? "md:ml-3" : "md:mr-3"
+      }`}
+    >
+      {/* Desktop Search */}
+      <div className="hidden md:flex w-full relative rounded-full backdrop-blur-md bg-white/20 border border-white/30 shadow-md transition-all duration-300 hover:bg-white/30">
         <input
-          className="bg-white w-full focus:outline-0 text-black"
+          className="w-full bg-transparent px-4 py-2 text-sm text-black placeholder-gray-600 focus:outline-none"
           type="text"
           placeholder={t("searchPlaceholder")}
           name="search"
           id="search"
         />
         <button
-          className={`absolute ${
-            en ? "right-1.5" : "left-1.5"
-          } z-40 text-black`}
+          className={`absolute top-1/2 -translate-y-1/2 ${
+            en ? "right-3" : "left-3"
+          } text-gray-700 hover:text-brand1 transition-colors`}
           type="submit"
         >
           <BiSearchAlt size={19} />
         </button>
       </div>
+
+      {/* Mobile Button */}
       <button
-        onClick={() => setOpen(!open)}
-        className={`md:hidden text-xl cursor-pointer p-2 ${
-          open && "bg-white text-black rounded-full"
+        onClick={() => setOpen((prev) => !prev)}
+        className={`md:hidden text-xl cursor-pointer p-2 transition-colors ${
+          open
+            ? "bg-white text-black rounded-full"
+            : "bg-transparent text-white"
         }`}
       >
         {open ? <MdClose /> : <BiSearchAlt />}
       </button>
+
+      {/* Mobile Dropdown Search */}
       {open && (
         <div
-          className={`bg-white absolute md:hidden md:w-72 p-2 rounded-full
-            transition-transform duration-1000
-             ${
-               open
-                 ? (en && "-translate-x-full  translate-y-5") ||
-                   "translate-x-full"
-                 : (en && "translate-x-full") || "-translate-x-full"
-             }`}
+          className={`absolute md:hidden top-12 w-72 rounded-full backdrop-blur-md bg-white/20 border border-white/30 shadow-md flex items-center gap-2 px-4 py-2 transition-all duration-300 ${
+            en ? "right-0" : "left-0"
+          }`}
         >
           <input
             ref={inputRef}
-            className="bg-white focus:outline-0 text-black"
+            className="flex-1 bg-transparent text-sm text-black placeholder-gray-700 focus:outline-none"
             type="text"
             placeholder={t("searchPlaceholder")}
             name="search"
             id="search"
           />
           <button
-            className={`absolute ${
-              en ? "right-1.5" : "left-1.5"
-            } z-40 text-black`}
+            className="text-gray-700 hover:text-brand1 transition-colors"
             type="submit"
           >
             <BiSearchAlt size={19} />

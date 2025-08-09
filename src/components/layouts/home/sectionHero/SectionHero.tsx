@@ -10,6 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import Typewriter from "@/components/anim/TypingAnimation";
+import MotionFadeUp from "@/components/anim/FadeUp";
 
 const badgeList = ["Html", "Css", "Js", "React"];
 
@@ -265,7 +266,7 @@ const SectionHero = () => {
 
             {/* Stats Card */}
             <motion.div
-              className={`flex-2/8 flex ${
+              className={`flex-2/8 hidden md:flex ${
                 en ? "font-IBM" : "font-vazir"
               } flex-col justify-around items-center`}
               initial={{ opacity: 0, y: 14, scale: 0.95 }}
@@ -292,6 +293,27 @@ const SectionHero = () => {
                 </div>
               </div>
             </motion.div>
+
+            <div className="md:hidden grid grid-cols-3 gap-4 w-full mt-6">
+              <MotionFadeUp className="flex flex-col items-center bg-bg2 p-3 rounded-2xl shadow-md">
+                <span className="text-brand1 text-3xl font-bold">3</span>
+                <span className="text-xs text-gray-400 text-center">
+                  {t("programmerLangs")}
+                </span>
+              </MotionFadeUp>
+              <MotionFadeUp className="flex flex-col items-center bg-bg2 p-3 rounded-2xl shadow-md">
+                <span className="text-brand1 text-3xl font-bold">6</span>
+                <span className="text-xs text-gray-400 text-center">
+                  {t("devTools")}
+                </span>
+              </MotionFadeUp>
+              <MotionFadeUp className="flex flex-col items-center bg-bg2 p-3 rounded-2xl shadow-md">
+                <span className="text-brand1 text-3xl font-bold">1</span>
+                <span className="text-xs text-gray-400 text-center">
+                  {t("exp")}
+                </span>
+              </MotionFadeUp>
+            </div>
           </div>
         </motion.div>
       )}
