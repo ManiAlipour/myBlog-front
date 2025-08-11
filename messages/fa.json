@@ -5,7 +5,9 @@
     "home": "خانه",
     "about": "درباره ی من",
     "contact": "ارتباط با من",
-    "searchPlaceholder": "جستجو در پست ها.."
+    "searchPlaceholder": "جستجو در پست ها..",
+    "login": "ورود",
+    "dashboard": "حساب کاربری"
   },
   "SectionHero": {
     "title": "مانی علیپور",

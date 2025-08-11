@@ -5,7 +5,9 @@
     "home": "Home",
     "about": "About",
     "contact": "Contact",
-    "searchPlaceholder": "Search in blogs"
+    "searchPlaceholder": "Search in blogs",
+    "login": "Login",
+    "dashboard": "Dashboard"
   },
 
   "SectionHero": {

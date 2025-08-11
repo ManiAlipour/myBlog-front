@@ -24,7 +24,7 @@ function SearchBox() {
       }`}
     >
       {/* Desktop Search */}
-      <div className="hidden md:flex w-full relative rounded-full backdrop-blur-md bg-white/20 border border-white/30 shadow-md transition-all duration-300 hover:bg-white/30">
+      <div className="hidden lg:flex w-full relative rounded-full backdrop-blur-md bg-white/20 border border-white/30 shadow-md transition-all duration-300 hover:bg-white/30">
         <input
           className="w-full bg-transparent px-4 py-2 text-sm text-black placeholder-gray-600 focus:outline-none"
           type="text"
@@ -45,7 +45,7 @@ function SearchBox() {
       {/* Mobile Button */}
       <button
         onClick={() => setOpen((prev) => !prev)}
-        className={`md:hidden text-xl cursor-pointer p-2 transition-colors ${
+        className={`lg:hidden text-xl cursor-pointer p-2 transition-colors ${
           open
             ? "bg-white text-black rounded-full"
             : "bg-transparent text-white"
@@ -57,7 +57,7 @@ function SearchBox() {
       {/* Mobile Dropdown Search */}
       {open && (
         <div
-          className={`absolute md:hidden top-12 w-72 rounded-full backdrop-blur-md bg-white/20 border border-white/30 shadow-md flex items-center gap-2 px-4 py-2 transition-all duration-300 ${
+          className={`absolute lg:hidden top-12 w-72 rounded-full backdrop-blur-md bg-white/20 border border-white/30 shadow-md flex items-center gap-2 px-4 py-2 transition-all duration-300 ${
             en ? "right-0" : "left-0"
           }`}
         >

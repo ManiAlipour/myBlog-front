@@ -8,10 +8,10 @@ import LanguageSwitcher from "../languageSwitcher/LanguageSwitcher";
 import { IoMenuOutline } from "react-icons/io5";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import AuthBtn from "./AuthBtn";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const t = useTranslations("Header");
@@ -21,7 +21,7 @@ function Header() {
   return (
     <>
       <div className="flex flex-wrap items-center justify-between gap-4 p-5">
-        {/* Logo and Title */}
+        {/* Logo */}
         <div
           className={`flex items-center text-base lg:text-xl ${
             en ? "font-ubuntu" : "font-morabba"
@@ -30,41 +30,42 @@ function Header() {
           <span className={`text-brand1`}>{"<M />"}</span> {t("title")}
         </div>
 
-        {/* Navigation Links */}
+        {/* Links - Desktop */}
         <div className="hidden md:block">
           <Links />
         </div>
 
-        {/* SearchBox for Large Screens */}
+        {/* Search - Desktop */}
         <div className="hidden md:block flex-auto max-w-sm">
           <SearchBox />
         </div>
 
-        {/* Social Media Links */}
-        <div className="hidden md:flex items-center gap-4">
+        {/* Social - Desktop */}
+        <div className="hidden lg:flex items-center gap-4">
           <Link href="/" className="flex items-center gap-2">
             <FaInstagram className="text-brand1 text-xl" />
           </Link>
-
           <Link href="/" className="flex items-center gap-2">
             <FaGithubAlt className="text-brand1 text-xl" />
           </Link>
-
           <Link href="/" className="flex items-center gap-2">
             <FaTelegramPlane className="text-brand1 text-xl" />
           </Link>
         </div>
 
-        {/* Language Switcher */}
-        <div className="flex flex-auto justify-end">
+        {/* Language switcher */}
+        <div className="hidden md:flex flex-auto justify-end items-center gap-4 flex-nowrap">
           <LanguageSwitcher />
+          <AuthBtn />
         </div>
 
-        <button className="md:hidden" onClick={toggleMenu}>
-          <IoMenuOutline size={20} />
+        {/* Mobile menu toggle */}
+        <button className="md:hidden flex items-center" onClick={toggleMenu}>
+          <IoMenuOutline size={22} />
         </button>
       </div>
 
+      {/* Mobile Menu */}
       {isOpen && (
         <motion.div
           initial={{ opacity: 0, x: "100%" }}
@@ -73,39 +74,33 @@ function Header() {
           transition={{ duration: 0.3 }}
           className="fixed z-50 inset-0 bg-black/90 p-5"
         >
-          {/* Close Button */}
           <button
-            className="absolute top-5 right-5 text-white text-2xl"
+            className="absolute top-5 right-5 text-white text-3xl"
             onClick={toggleMenu}
           >
             &times;
           </button>
 
-          {/* Links */}
           <nav className="flex flex-col items-center justify-center h-full gap-8">
-            <Link
-              href="/"
-              className="text-2xl text-white hover:text-brand1"
-              onClick={toggleMenu}
-            >
+            <Link href="/" className="text-2xl text-white" onClick={toggleMenu}>
               {t("home")}
             </Link>
             <Link
               href="/about"
-              className="text-2xl text-white hover:text-brand1"
+              className="text-2xl text-white"
               onClick={toggleMenu}
             >
               {t("about")}
             </Link>
             <Link
               href="/blogs"
-              className="text-2xl text-white hover:text-brand1"
+              className="text-2xl text-white"
               onClick={toggleMenu}
             >
               {t("blogs")}
             </Link>
 
-            {/* Social Media */}
+            {/* Social */}
             <div className="flex gap-6">
               <Link href="/" className="text-white">
                 <FaInstagram />
@@ -118,8 +113,11 @@ function Header() {
               </Link>
             </div>
 
-            {/* Language Switcher */}
+            {/* Language */}
             <LanguageSwitcher />
+
+            {/* Auth Btn - Mobile */}
+            <AuthBtn />
           </nav>
         </motion.div>
       )}
