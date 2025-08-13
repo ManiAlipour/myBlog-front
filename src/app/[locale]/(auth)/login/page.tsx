@@ -2,38 +2,35 @@
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
 
 const LoginForm = () => {
-  const router = useRouter();
+  const locale = useLocale();
+  const en = locale === "en";
+
+  const t = useTranslations("Login");
 
   const initialValues = { email: "", password: "" };
 
   const validationSchema = Yup.object({
-    email: Yup.string().email("ایمیل معتبر نیست").required("ایمیل الزامی است"),
+    email: Yup.string().email(t("emailNotValid")).required(t("emailRequired")),
     password: Yup.string()
-      .min(6, "رمز باید حداقل ۶ کاراکتر باشد")
-      .required("رمز عبور الزامی است"),
+      .min(8, t("passwordMinMax"))
+      .required(t("passwordRequird")),
   });
 
-  const handleSubmit = async (values: typeof initialValues) => {
-    const res = await signIn("credentials", {
-      redirect: false,
-      email: values.email,
-      password: values.password,
-    });
-
-    if (!res?.error) router.push("/dashboard");
-    else alert("ایمیل یا رمز عبور اشتباه");
-  };
+  const handleSubmit = async (values: typeof initialValues) => {};
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-bg1 px-4">
-      <div className="w-full max-w-md bg-bg2 p-8 rounded-xl shadow-lg border border-grey">
+      <div
+        className={`w-full max-w-md bg-bg2 p-8 rounded-xl shadow-lg border border-grey ${
+          en ? "font-ubuntu" : "font-vazir"
+        }`}
+      >
         {/* عنوان */}
-        <h1 className="text-xl font-bold text-center mb-6 text-white font-ubuntu">
-          ورود به حساب کاربری
+        <h1 className="text-xl font-bold text-center mb-6 text-white">
+          {t("title")}
         </h1>
 
         {/* فرم */}
@@ -43,13 +40,12 @@ const LoginForm = () => {
           onSubmit={handleSubmit}
         >
           <Form className="space-y-5">
-            {/* ایمیل */}
             <div>
               <label
                 htmlFor="email"
-                className="block mb-1 text-sm font-medium text-brand2 font-ubuntu"
+                className="block mb-1 text-sm font-medium text-brand2"
               >
-                ایمیل
+                {t("email")}
               </label>
               <Field
                 type="email"
@@ -66,13 +62,12 @@ const LoginForm = () => {
               />
             </div>
 
-            {/* پسورد */}
             <div>
               <label
                 htmlFor="password"
-                className="block mb-1 text-sm font-medium text-brand2 font-ubuntu"
+                className="block mb-1 text-sm font-medium text-brand2"
               >
-                رمز عبور
+                {t("password")}
               </label>
               <Field
                 type="password"
@@ -92,32 +87,12 @@ const LoginForm = () => {
             {/* دکمه ورود */}
             <button
               type="submit"
-              className="w-full py-2 bg-brand1 text-bg1 font-medium font-ubuntu rounded-lg hover:opacity-90 transition"
+              className="w-full py-2 bg-brand1 text-bg1 font-medium rounded-lg hover:opacity-90 transition"
             >
-              ورود
+              {t("submitBtn")}
             </button>
           </Form>
         </Formik>
-
-        {/* جداکننده */}
-        <div className="flex items-center my-5">
-          <div className="flex-grow border-t border-grey"></div>
-          <span className="mx-3 text-sm text-grey">یا</span>
-          <div className="flex-grow border-t border-grey"></div>
-        </div>
-
-        {/* گوگل */}
-        <button
-          onClick={() => signIn("google")}
-          className="w-full py-2 border border-grey rounded-lg flex items-center justify-center space-x-2 hover:bg-bg1 transition"
-        >
-          <img
-            src="https://www.svgrepo.com/show/475656/google-color.svg"
-            alt="Google"
-            className="w-5 h-5"
-          />
-          <span className="text-sm text-white font-ubuntu">ورود با گوگل</span>
-        </button>
       </div>
     </div>
   );

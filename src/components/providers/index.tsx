@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import Header from "../features/header/Header";
 import { useLocale } from "next-intl";
 import Footer from "../features/footer/Footer";
-import { SessionProvider } from "next-auth/react";
 import { usePathname } from "next/navigation";
 
 const Providers = ({
@@ -32,11 +31,9 @@ const Providers = ({
       dir={en ? "ltr" : "rtl"}
       className={`container mx-auto ${en ? "font-ubuntu" : "font-vazir"}`}
     >
-      <SessionProvider>
-        {layoutCheck || <Header />}
-        {children}
-        {layoutCheck || <Footer />}
-      </SessionProvider>
+      {layoutCheck || <Header />}
+      {children}
+      {layoutCheck || <Footer />}
     </div>
   );
 };

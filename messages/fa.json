@@ -62,5 +62,16 @@
   },
   "Footer": {
     "copy": "تمام حقوق برای ManiAlipour محفوظ است © 2025"
+  },
+
+  "Login": {
+    "title": "ورود به حساب کاربری",
+    "email": "ایمیل",
+    "password": "رمز عبور",
+    "emailRequired": "ایمیل الزامی است",
+    "emailNotValid": "ایمیل معتبر نیست",
+    "passwordRequird": "رمز عبور اجباری است",
+    "passwordMinMax": "رمز باید حداقل 8 و حداکثر 20 کاراکتر باشد",
+    "submitBtn": "ورود"
   }
 }

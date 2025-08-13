@@ -61,5 +61,16 @@
   },
   "Footer": {
     "copy": "© 2025 ManiAlipour. All rights reserved."
+  },
+
+  "Login": {
+    "title": "Signin / Login",
+    "email": "Email",
+    "password": "Password",
+    "emailRequired": "Email is required",
+    "emailNotValid": "Email is not valid",
+    "passwordRequird": "Password is required",
+    "passwordMinMax": "Email must be between 8 and 20 characters.",
+    "submitBtn": "Login"
   }
 }
