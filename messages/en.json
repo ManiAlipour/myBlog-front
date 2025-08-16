@@ -22,6 +22,7 @@
     "exp": "Year of Experience",
     "talk": "Let’s Talk"
   },
+
   "AboutMe": {
     "aboutMe": "About Me",
     "hello": "Hello!",
@@ -32,12 +33,14 @@
     "like": "I like to have my perspective and belief systems challenged so that I see the world through new eyes.",
     "myName": "My name is Mani and I specialize in web developement that utilizes "
   },
+
   "Skills": {
     "title": "Skills",
     "description": "I am striving to never stop learning and improving",
     "open": "Show more",
     "close": "close"
   },
+
   "Blogs": {
     "title": "Blogs",
     "description": "My thoughts on technology and business, welcome to subscribe",
@@ -45,6 +48,7 @@
     "text": "Text",
     "date": "Date"
   },
+
   "ContactUs": {
     "title": "Contact",
     "description": "I’m currently available for freelance work",
@@ -59,6 +63,7 @@
     "contactBtn": "Send Message For Me",
     "contactTitle": "Send Message"
   },
+
   "Footer": {
     "copy": "© 2025 ManiAlipour. All rights reserved."
   },
@@ -71,6 +76,39 @@
     "emailNotValid": "Email is not valid",
     "passwordRequird": "Password is required",
     "passwordMinMax": "Email must be between 8 and 20 characters.",
-    "submitBtn": "Login"
+    "submitBtn": "Login",
+    "notAccount": "Don't have an account?",
+    "register": "Create account now!"
+  },
+
+  "Register": {
+    "title": "Sign Up",
+    "name": "Full Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "submitBtn": "Sign Up",
+    "nameMin": "Name must be at least 2 characters",
+    "nameMax": "Name must be at most 50 characters",
+    "nameRequired": "Full name is required",
+    "emailNotValid": "Invalid email address",
+    "emailRequired": "Email is required",
+    "passwordMinMax": "Password must be at least 8 characters",
+    "passwordRequired": "Password is required",
+    "confirmPasswordMatch": "Password and confirmation must match",
+    "confirmPasswordRequired": "Please confirm your password",
+    "haveAccount": "Do you have an account?",
+    "login": "Login Now"
+  },
+
+  "VerifyEmail": {
+    "title": "Verify Email",
+    "sentTo": "Code sent to:",
+    "code": "Verification Code",
+    "codeLength": "Code must be 6 digits",
+    "codeRequired": "Code is required",
+    "submitBtn": "Verify",
+    "noCode": "Didn't receive the code?",
+    "resend": "Resend"
   }
 }

@@ -3,10 +3,17 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useLocale, useTranslations } from "next-intl";
+import Link from "next/link";
+import AuthLangugeSwitcher from "@/components/features/languageSwitcher/AuthLangugeSwitcher";
+import clientApi from "@/lib/axios/client";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
   const locale = useLocale();
   const en = locale === "en";
+
+  const router = useRouter();
 
   const t = useTranslations("Login");
 
@@ -19,15 +26,30 @@ const LoginForm = () => {
       .required(t("passwordRequird")),
   });
 
-  const handleSubmit = async (values: typeof initialValues) => {};
+  const handleSubmit = async (values: typeof initialValues) => {
+    try {
+      const response = await clientApi.post("/auth/login", {
+        email: values.email,
+        password: values.password,
+      });
+
+      const { token } = response.data;
+
+      Cookies.set("token", token, { expires: 30 });
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-bg1 px-4">
       <div
-        className={`w-full max-w-md bg-bg2 p-8 rounded-xl shadow-lg border border-grey ${
+        className={`w-full relative max-w-md bg-bg2 p-8 rounded-xl shadow-lg border border-grey ${
           en ? "font-ubuntu" : "font-vazir"
         }`}
       >
+        <AuthLangugeSwitcher />
         {/* عنوان */}
         <h1 className="text-xl font-bold text-center mb-6 text-white">
           {t("title")}
@@ -93,6 +115,15 @@ const LoginForm = () => {
             </button>
           </Form>
         </Formik>
+
+        <div className="my-4">
+          <span className="text-gray-400">
+            {t("notAccount")}
+            <Link className="mx-2 text-brand1" href="/register">
+              {t("register")}
+            </Link>
+          </span>
+        </div>
       </div>
     </div>
   );

@@ -1,11 +1,12 @@
+import { dbConnect } from "@/lib/db/connect";
 import { hashPassword } from "@/lib/password";
-import prisma from "@/lib/prisma";
+import { z } from "zod";
+import User from "@/lib/db/models/User";
 import {
   generateVerificationCode,
   sendVerificationEmail,
 } from "@/utils/sendVerificationEmail";
 import { NextResponse } from "next/server";
-import { z } from "zod";
 
 const userSchema = z.object({
   name: z.string().min(3).max(15),
@@ -16,11 +17,12 @@ const userSchema = z.object({
 
 export async function POST(request: Request) {
   try {
+    await dbConnect();
     const req = await request.json();
 
     const body = userSchema.parse(req);
 
-    const user = await prisma.user.findUnique({ where: { email: body.email } });
+    const user = await User.findOne({ email: body.email });
 
     if (user)
       return NextResponse.json(
@@ -42,21 +44,26 @@ export async function POST(request: Request) {
     const verificationCodeExpires = new Date(
       Date.now() + VERIFICATION_CODE_EXPIRE_MS
     );
-    const newUser = await prisma.user.create({
-      data: {
-        password,
-        email: body.email,
-        name: body.name,
-        verificationCode,
-        verificationCodeExpires,
-      },
+    const newUser = new User({
+      password,
+      email: body.email,
+      name: body.name,
+      verificationCode,
+      verificationCodeExpires,
     });
+
+    const savedUser = await newUser.save();
 
     return NextResponse.json({
       message: "User Added and send verification code success",
-      data: newUser,
+      data: {
+        id: newUser._id,
+        email: newUser.email,
+        name: newUser.name,
+      },
     });
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { message: "Server internal error" },
       { status: 500 }
