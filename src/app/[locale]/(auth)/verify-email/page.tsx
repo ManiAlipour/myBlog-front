@@ -6,9 +6,9 @@ import VerifyEmailForm from "./VerifyEmailForm";
 export default async function VerifyEmailPage({
   searchParams,
 }: {
-  searchParams: { email?: string };
+  searchParams: Promise<{ email?: string }>;
 }) {
-  const email = searchParams.email || "";
+  const email = (await searchParams).email || "";
   if (!email) redirect("/register");
 
   await dbConnect();
