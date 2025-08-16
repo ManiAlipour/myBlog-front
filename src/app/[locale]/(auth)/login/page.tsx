@@ -8,8 +8,11 @@ import AuthLangugeSwitcher from "@/components/features/languageSwitcher/AuthLang
 import clientApi from "@/lib/axios/client";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { ThreeDot } from "react-loading-indicators";
 
 const LoginForm = () => {
+  const [loading, setLoading] = useState(false);
   const locale = useLocale();
   const en = locale === "en";
 
@@ -28,6 +31,7 @@ const LoginForm = () => {
 
   const handleSubmit = async (values: typeof initialValues) => {
     try {
+      setLoading(true);
       const response = await clientApi.post("/auth/login", {
         email: values.email,
         password: values.password,
@@ -36,8 +40,10 @@ const LoginForm = () => {
       const { token } = response.data;
 
       Cookies.set("token", token, { expires: 30 });
+      setLoading(false);
       router.push("/");
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
@@ -50,12 +56,10 @@ const LoginForm = () => {
         }`}
       >
         <AuthLangugeSwitcher />
-        {/* عنوان */}
         <h1 className="text-xl font-bold text-center mb-6 text-white">
           {t("title")}
         </h1>
 
-        {/* فرم */}
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -106,12 +110,15 @@ const LoginForm = () => {
               />
             </div>
 
-            {/* دکمه ورود */}
             <button
               type="submit"
-              className="w-full py-2 bg-brand1 text-bg1 font-medium rounded-lg hover:opacity-90 transition"
+              className="w-full flex justify-center items-center py-2 bg-brand1 text-bg1 font-medium rounded-lg hover:opacity-90 transition"
             >
-              {t("submitBtn")}
+              {loading ? (
+                <ThreeDot color="#292f36" size="small" />
+              ) : (
+                <span>{t("submitBtn")}</span>
+              )}
             </button>
           </Form>
         </Formik>

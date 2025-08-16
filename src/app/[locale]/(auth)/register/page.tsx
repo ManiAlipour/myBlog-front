@@ -6,8 +6,11 @@ import Link from "next/link";
 import AuthLangugeSwitcher from "@/components/features/languageSwitcher/AuthLangugeSwitcher";
 import clientApi from "@/lib/axios/client";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { ThreeDot } from "react-loading-indicators";
 
 const RegisterForm = () => {
+  const [loading, setLoading] = useState(false);
   const locale = useLocale();
   const en = locale === "en";
   const router = useRouter();
@@ -36,7 +39,7 @@ const RegisterForm = () => {
   });
 
   const handleSubmit = async (values: typeof initialValues) => {
-    console.log("Register form values: ", values);
+    setLoading(true);
     const data = {
       email: values.email,
       name: values.name,
@@ -44,11 +47,18 @@ const RegisterForm = () => {
       locale,
     };
 
-    clientApi.post("/auth/register", data).then(() => {
-      router.push(
-        `/${locale}/verify-email?email=${encodeURIComponent(values.email)}`
-      );
-    });
+    clientApi
+      .post("/auth/register", data)
+      .then(() => {
+        setLoading(false);
+
+        router.push(
+          `/${locale}/verify-email?email=${encodeURIComponent(values.email)}`
+        );
+      })
+      .catch(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -167,7 +177,11 @@ const RegisterForm = () => {
               type="submit"
               className="w-full py-2 bg-brand1 text-bg1 font-medium rounded-lg hover:opacity-90 transition"
             >
-              {t("submitBtn")}
+              {loading ? (
+                <ThreeDot color="#292f36" size="small" />
+              ) : (
+                <span>{t("submitBtn")}</span>
+              )}
             </button>
           </Form>
         </Formik>

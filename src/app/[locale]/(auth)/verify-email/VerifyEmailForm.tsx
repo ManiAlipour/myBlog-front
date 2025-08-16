@@ -5,12 +5,16 @@ import * as Yup from "yup";
 import { useLocale, useTranslations } from "next-intl";
 import AuthLanguageSwitcher from "@/components/features/languageSwitcher/AuthLangugeSwitcher";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { ThreeDot } from "react-loading-indicators";
+import clientApi from "@/lib/axios/client";
 
 interface Props {
   email: string;
 }
 
 const VerifyEmailForm = ({ email }: Props) => {
+  const [loading, setLoading] = useState(false);
   const locale = useLocale();
   const en = locale === "en";
   const t = useTranslations("VerifyEmail");
@@ -24,9 +28,20 @@ const VerifyEmailForm = ({ email }: Props) => {
 
   const handleSubmit = async (values: typeof initialValues) => {
     try {
-      console.log("Verify code for:", email, "with code:", values.code);
-      // TODO: API تایید کد
-      router.push("/login");
+      setLoading(true);
+      
+      clientApi
+        .post("/verify-email", {
+          code: values.code,
+          email,
+        })
+        .then(() => {
+          setLoading(false);
+          router.push("/login");
+        })
+        .catch(() => {
+          setLoading(false);
+        });
     } catch (err) {
       console.error(err);
     }
@@ -80,9 +95,13 @@ const VerifyEmailForm = ({ email }: Props) => {
 
             <button
               type="submit"
-              className="w-full py-2 bg-brand1 text-bg1 font-medium rounded-lg hover:opacity-90 transition"
+              className="w-full flex justify-center items-center py-2 bg-brand1 text-bg1 font-medium rounded-lg hover:opacity-90 transition"
             >
-              {t("submitBtn")}
+              {loading ? (
+                <ThreeDot color="#292f36" size="small" />
+              ) : (
+                <span>{t("submitBtn")}</span>
+              )}
             </button>
           </Form>
         </Formik>
@@ -92,7 +111,6 @@ const VerifyEmailForm = ({ email }: Props) => {
           <button
             onClick={() => {
               console.log("Resend code to:", email);
-              // TODO: API ارسال مجدد کد
             }}
             className="ml-2 text-brand1 hover:underline"
           >
