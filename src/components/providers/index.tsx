@@ -16,7 +16,6 @@ const Providers = ({
   const en = locale === "en";
   const urls = ["/login", "/register", "/dashboard", "/admin", "/verify-email"];
   const layoutCheck = urls.some((url) => patname === `/${locale}${url}`);
-  console.log(patname);
 
   const [mounted, setMounted] = useState(false);
 

@@ -26,7 +26,8 @@ clientApi.interceptors.request.use(
 clientApi.interceptors.response.use(
   (res) => res.data,
   (err) => {
-    if (err.response?.status === 401) {
+    const shouldRedirect = err.config?.redirectOn401 ?? true;
+    if (err.response?.status === 401 && shouldRedirect) {
       Cookies.remove("token");
       if (typeof window !== "undefined") {
         window.location.href = "/login";

@@ -7,7 +7,8 @@
     "contact": "Contact",
     "searchPlaceholder": "Search in blogs",
     "login": "Login",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "MobileLogin": "Welcome! please click here to login / create account"
   },
 
   "SectionHero": {
