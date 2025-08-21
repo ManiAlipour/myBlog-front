@@ -131,23 +131,6 @@ const textColors = {
   next: "text-white",
 };
 
-const LanguegeCard = ({
-  Icon,
-  title,
-  color,
-  iconColor = "white",
-}: ILangProps) => (
-  <ZoomInOnScroll className="flex flex-col items-center gap-2">
-    <div
-      className={`w-[100px] h-[100px] flex justify-center items-center
-         rounded-full text-4xl ${bgColors[color]} text-${iconColor}`}
-    >
-      <Icon />
-    </div>
-    <span className={`${textColors[color]}`}>{title}</span>
-  </ZoomInOnScroll>
-);
-
 interface ILangMobileProps extends ILangProps {
   fullWidthIndex?: number[];
   index: number;

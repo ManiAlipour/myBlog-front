@@ -19,6 +19,7 @@ export default function ContactForm() {
       message: Yup.string().required("Message is required"),
     }),
     onSubmit: (values) => {
+      console.log(values);
       setIsOpen(false); // بستن مودال بعد ارسال
     },
   });

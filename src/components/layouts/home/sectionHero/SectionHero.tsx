@@ -25,7 +25,6 @@ const SectionHero = () => {
     setTimeout(() => setShow(true), 150);
   }, []);
 
-  // انیمیشن برای بخش‌ها
   const sectionVariant = {
     hidden: { opacity: 0, y: 40 },
     visible: (delay = 0) => ({
@@ -34,7 +33,7 @@ const SectionHero = () => {
       transition: { duration: 0.7, delay },
     }),
   };
-  // انیمیشن ستگِر برای badgeها (مهارت‌ها)
+
   const badgeContainer = {
     visible: {
       transition: { staggerChildren: 0.13, delayChildren: 0.8 },

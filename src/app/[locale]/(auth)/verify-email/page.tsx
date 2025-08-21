@@ -1,7 +1,6 @@
 import { redirect } from "next/navigation";
-import { dbConnect } from "@/lib/db/connect";
-import User from "@/lib/db/models/User";
 import VerifyEmailForm from "./VerifyEmailForm";
+import { cookies } from "next/headers";
 
 export default async function VerifyEmailPage({
   searchParams,
@@ -11,9 +10,10 @@ export default async function VerifyEmailPage({
   const email = (await searchParams).email || "";
   if (!email) redirect("/register");
 
-  await dbConnect();
-  const user = await User.findOne({ email });
-  if (!user) redirect("/");
+  const c = await cookies();
+  const token = c.get("token");
+
+  if(token?.value) redirect("/")
 
   return <VerifyEmailForm email={email} />;
 }

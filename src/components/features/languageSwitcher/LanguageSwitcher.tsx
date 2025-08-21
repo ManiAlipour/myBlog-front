@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 import { useState } from "react";
 import Image from "next/image";
@@ -19,7 +19,6 @@ const languages = [
 export default function LanguageSwitcher() {
   const locale = useLocale();
   const router = useRouter();
-  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
   const currentLang = languages.find((l) => l.code === locale) || languages[0];

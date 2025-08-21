@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import LanguageSwitcher from "../languageSwitcher/LanguageSwitcher";
-import AuthBtn from "./AuthBtn";
 import { motion } from "framer-motion";
 import {
   FaGithubAlt,
@@ -23,9 +22,9 @@ interface IMobileMenuProps {
 const MobileMenu = ({ toggleMenu }: IMobileMenuProps) => {
   const t = useTranslations("Header");
 
-  let token = Cookies.get("token");
+  const token = Cookies.get("token");
 
-  const [user, setUser] = useState<any>(undefined);
+  const [user, setUser] = useState<User | undefined>(undefined);
   const [mounted, setMounted] = useState(false);
   const locale = useLocale();
   const en = locale === "en";
@@ -42,9 +41,9 @@ const MobileMenu = ({ toggleMenu }: IMobileMenuProps) => {
           setUser(res.data);
         }
       } catch (err) {
+        console.log(err);
         if (isMounted) {
           setUser(undefined);
-          token = undefined;
         }
       } finally {
         if (isMounted) {
@@ -96,7 +95,7 @@ const MobileMenu = ({ toggleMenu }: IMobileMenuProps) => {
                     en ? "flex-row" : "flex-row-reverse"
                   }`}
                 >
-                  {user.name}
+                  {user?.name}
                   <IoMdSettings />
                 </span>
                 <span
@@ -104,7 +103,7 @@ const MobileMenu = ({ toggleMenu }: IMobileMenuProps) => {
                   className="flex items-center gap-2 text-sm text-gray-400"
                 >
                   <MdOutlineAlternateEmail />
-                  {user.email}
+                  {user?.email}
                 </span>
               </div>
             </Link>
